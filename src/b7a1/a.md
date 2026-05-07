@@ -11,7 +11,7 @@
 
 **Generics** হলো তৃতীয় পথ — এবং সেরা পথ।
 
-Generics আমাদের এমন component, function, এবং class লিখতে দেয় যেগুলো **যেকোনো type-এর সাথে কাজ করে**, অথচ **type safety একটুও নষ্ট হয় না।**
+**Generics আমাদের এমন component, function, এবং class লিখতে দেয়, যেগুলো যেকোনো type-এর সাথে কাজ করে, অথচ type safety একটুও নষ্ট হয় না।**
 
 ---
 
@@ -28,9 +28,6 @@ function getFirstNumber(arr: number[]): number {
 function getFirstString(arr: string[]): string {
   return arr[0];
 }
-
-// এখন User-এর জন্যও একটা লিখতে হবে?
-// Product-এর জন্যও? — এটা কখনো শেষ হবে না!
 ```
 
 ```typescript
@@ -40,7 +37,8 @@ function getFirst(arr: any[]): any {
 }
 
 const result = getFirst([1, 2, 3]);
-result.toUpperCase(); // TypeScript কোনো error দেবে না — কিন্তু runtime-এ ভাঙবে!
+result.toUpperCase();
+// TypeScript কোনো error দেবে না — কিন্তু runtime-এ ভাঙবে!
 // কারণ TypeScript জানে না result কোন type-এর
 ```
 
@@ -68,7 +66,7 @@ firstStr.toFixed(2); // ❌ Error: Property 'toFixed' does not exist on type 'st
 
 `<T>` হলো একটা **type parameter** — placeholder-এর মতো। Function call করার সময় TypeScript বুঝে নেয় `T` আসলে কোন type।
 
-> **মূল কথা:** `T` শুধু একটা convention। তুমি `<Item>`, `<Data>`, `<MyType>` যেকোনো নাম দিতে পারো। তবে single letter (`T`, `K`, `V`) সবচেয়ে বেশি প্রচলিত।
+> **মূল কথা:** `T` শুধু একটা convention। আমরা `<Item>`, `<Data>`, `<MyType>` যেকোনো নাম দিতে পারি। তবে single letter (`T`, `K`, `V`) সবচেয়ে বেশি প্রচলিত।
 
 ---
 
@@ -171,7 +169,7 @@ interface Student {
 }
 
 const students: Student[] = [
-  { name: "আরিফ", gpa: 3.8 },
+  { name: "মেজবা", gpa: 3.8 },
   { name: "সুমাইয়া", gpa: 3.2 },
   { name: "তানভীর", gpa: 3.9 },
 ];
