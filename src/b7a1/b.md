@@ -1,4 +1,4 @@
-# লার্জ-স্কেল TypeScript প্রজেক্টে OOP-এর চার স্তম্ভ: জটিলতা হ্রাসের চাবিকাঠি
+# TypeScript প্রজেক্টে OOP-এর চার স্তম্ভ
 
 আধুনিক ওয়েব ডেভেলপমেন্টে প্রজেক্টের আকার যত বৃদ্ধি পায়, কোড ম্যানেজ করা ততই কঠিন হয়ে পড়ে। বিশেষ করে বড় মাপের (Large-scale) TypeScript প্রজেক্টে লজিক সাজাতে এবং মেইনটেনেবিলিটি নিশ্চিত করতে Object-Oriented Programming (OOP) এর কোনো বিকল্প নেই। আজ আমরা আলোচনা করব কিভাবে OOP-এর চারটি মূল স্তম্ভ—**Encapsulation** এবং **Abstraction**—আমাদের কোডকে আরও শক্তিশালী ও সুশৃঙ্খল করে তোলে।
 
@@ -45,36 +45,33 @@ myAccount.deposit(500); // সঠিক পদ্ধতি
 **এটি কেন প্রয়োজন?**
 বড় সিস্টেমে যখন অনেকগুলো ক্লাস একই ধরণের কাজ করে, তখন একটি সাধারণ ব্লু-প্রিন্ট বা কন্ট্রাক্ট (Contract) থাকা জরুরি। এটি ডেভেলপারদের ভেতরের জটিল লজিক না জেনেও কোড ব্যবহার করতে সাহায্য করে।
 
-````typescript
+```typescript
 abstract class MailService {
-    // জটিল ইন্টারনাল লজিক যা ইউজারকে জানার প্রয়োজন নেই
-    private connect(): void {
-        console.log("Connecting to SMTP server...");
-    }
+  // জটিল ইন্টারনাল লজিক যা ইউজারকে জানার প্রয়োজন নেই
+  private connect(): void {
+    console.log("Connecting to SMTP server...");
+  }
 
-    private authenticate(): void {
-        console.log("Authenticating credentials...");
-    }
+  private authenticate(): void {
+    console.log("Authenticating credentials...");
+  }
 
-    // ইউজার শুধু এই মেথডটি কল করবে
-    public sendEmail(receiver: string, message: string): void {
-        this.connect();
-        this.authenticate();
-        console.log(`Email sent to ${receiver}: ${message}`);
-    }
+  // ইউজার শুধু এই মেথডটি কল করবে
+  public sendEmail(receiver: string, message: string): void {
+    this.connect();
+    this.authenticate();
+    console.log(`Email sent to ${receiver}: ${message}`);
+  }
 }
 
 class OutlookService extends MailService {
-    // এখানে নির্দিষ্ট কোনো লজিক থাকলে যোগ করা যায়
+  // এখানে নির্দিষ্ট কোনো লজিক থাকলে যোগ করা যায়
 }
 
 const mail = new OutlookService();
 mail.sendEmail("user@example.com", "Hello from TypeScript!");
 // ইউজারকে শুধু sendEmail কল করতে হচ্ছে, কানেকশন বা অথেন্টিকেশন নিয়ে ভাবতে হচ্ছে না।
 ```
-
----
-````
 
 ## কেন এই পদ্ধতিগুলো লার্জ-স্ক্যাল প্রজেক্টে অপরিহার্য?
 
