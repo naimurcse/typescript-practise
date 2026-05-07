@@ -36,9 +36,7 @@ class BankAccount {
 const myAccount = new BankAccount(1000);
 myAccount.deposit(500); // সঠিক পদ্ধতি
 // myAccount._balance = 5000; // Error: Property '_balance' is private
-```[cite: 1]
 
----
 
 ## ২. Abstraction (অ্যাবস্ট্রাকশন): জটিলতা লুকানো এবং ইন্টারফেস তৈরি[cite: 1]
 
