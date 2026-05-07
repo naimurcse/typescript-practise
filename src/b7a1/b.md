@@ -11,32 +11,32 @@
 **এটি কেন প্রয়োজন?**[cite: 1]
 বড় প্রজেক্টে কোনো ভেরিয়েবল যদি যেকোনো জায়গা থেকে পরিবর্তন করা যায়, তবে বাগ (bug) ধরা প্রায় অসম্ভব হয়ে পড়ে[cite: 1]। এনক্যাপসুলেশন নিশ্চিত করে যে ক্লাসের ভেতরের স্টেট শুধুমাত্র অনুমোদিত মেথডের মাধ্যমেই পরিবর্তিত হবে[cite: 1]।
 
-````typescript
+```typescript
 class BankAccount {
-    private _balance: number;
+  private _balance: number;
 
-    constructor(initialBalance: number) {
-        this._balance = initialBalance;
-    }
+  constructor(initialBalance: number) {
+    this._balance = initialBalance;
+  }
 
-    // ব্যালেন্স জমা দেওয়ার জন্য নিয়ন্ত্রিত মেথড
-    public deposit(amount: number): void {
-        if (amount > 0) {
-            this._balance += amount;
-            console.log(`Deposited: ${amount}. New Balance: ${this._balance}`);
-        }
+  // ব্যালেন্স জমা দেওয়ার জন্য নিয়ন্ত্রিত মেথড
+  public deposit(amount: number): void {
+    if (amount > 0) {
+      this._balance += amount;
+      console.log(`Deposited: ${amount}. New Balance: ${this._balance}`);
     }
+  }
 
-    // ব্যালেন্স দেখার জন্য গেটার (সরাসরি পরিবর্তন সম্ভব নয়)
-    public get balance(): number {
-        return this._balance;
-    }
+  // ব্যালেন্স দেখার জন্য গেটার (সরাসরি পরিবর্তন সম্ভব নয়)
+  public get balance(): number {
+    return this._balance;
+  }
 }
 
 const myAccount = new BankAccount(1000);
 myAccount.deposit(500); // সঠিক পদ্ধতি
 // myAccount._balance = 5000; // Error: Property '_balance' is private
-
+```
 
 ## ২. Abstraction (অ্যাবস্ট্রাকশন): জটিলতা লুকানো এবং ইন্টারফেস তৈরি[cite: 1]
 
@@ -44,7 +44,8 @@ myAccount.deposit(500); // সঠিক পদ্ধতি
 
 **এটি কেন প্রয়োজন?**[cite: 1]
 বড় সিস্টেমে যখন অনেকগুলো ক্লাস একই ধরণের কাজ করে, তখন একটি সাধারণ ব্লু-প্রিন্ট বা কন্ট্রাক্ট (Contract) থাকা জরুরি[cite: 1]। এটি ডেভেলপারদের ভেতরের জটিল লজিক না জেনেও কোড ব্যবহার করতে সাহায্য করে[cite: 1]।
-```typescript
+
+````typescript
 abstract class MailService {
     // জটিল ইন্টারনাল লজিক যা ইউজারকে জানার প্রয়োজন নেই
     private connect(): void {
