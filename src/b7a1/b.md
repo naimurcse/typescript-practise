@@ -73,6 +73,72 @@ mail.sendEmail("user@example.com", "Hello from TypeScript!");
 // ইউজারকে শুধু sendEmail কল করতে হচ্ছে, কানেকশন বা অথেন্টিকেশন নিয়ে ভাবতে হচ্ছে না।
 ```
 
+---
+
+## ৩. Inheritance (ইনহেরিটেন্স): কোডের পুনঃব্যবহারযোগ্যতা
+
+ইনহেরিটেন্স হলো এমন একটি প্রক্রিয়া যার মাধ্যমে একটি ক্লাস (Child Class) অন্য একটি ক্লাসের (Parent Class) বৈশিষ্ট্য বা প্রপার্টি এবং মেথডগুলো উত্তরাধিকার সূত্রে পায়।
+
+**এটি কেন প্রয়োজন?**
+লার্জ-স্কেল প্রজেক্টে অনেক সময় বিভিন্ন ক্লাসের মধ্যে কিছু কমন লজিক থাকে। ইনহেরিটেন্স ব্যবহার করে আমরা সেই কমন লজিকগুলো একবার লিখে বারবার ব্যবহার করতে পারি।
+
+```typescript
+class User {
+  constructor(
+    public name: string,
+    public email: string,
+  ) {}
+
+  public login(): void {
+    console.log(`${this.name} has logged in.`);
+  }
+}
+
+class Admin extends User {
+  public deleteUser(userName: string): void {
+    console.log(`Admin ${this.name} deleted user: ${userName}`);
+  }
+}
+
+const admin = new Admin("Mehnaz", "mehnaz@example.com");
+admin.login();
+admin.deleteUser("Siam");
+```
+
+---
+
+## ৪. Polymorphism (পলিমরফিজম): বহুবিধ রূপ ধারণ
+
+পলিমরফিজম শব্দের অর্থ হলো 'বহুরূপতা'। প্রোগ্রামিংয়ের ভাষায়, একই মেথড যখন ভিন্ন ভিন্ন অবজেক্টের জন্য ভিন্ন ভিন্ন ভাবে কাজ করে, তাকে পলিমরফিজম বলে।
+
+**এটি কেন প্রয়োজন?**
+বড় প্রজেক্টে যখন একই ধরণের অ্যাকশন বিভিন্ন ভাবে সম্পাদন করতে হয় (যেমন: বিভিন্ন পেমেন্ট গেটওয়ে), তখন পলিমরফিজম কোডকে অনেক বেশি ফ্লেক্সিবল করে তোলে।
+
+```typescript
+class Payment {
+  public process(): void {
+    console.log("Processing generic payment...");
+  }
+}
+
+class BkashPayment extends Payment {
+  public override process(): void {
+    console.log("Processing payment via Bkash with 1.85% charge.");
+  }
+}
+
+class CardPayment extends Payment {
+  public override process(): void {
+    console.log("Processing payment via Credit Card.");
+  }
+}
+
+const payments: Payment[] = [new BkashPayment(), new CardPayment()];
+payments.forEach((p) => p.process());
+```
+
+---
+
 ## কেন এই পদ্ধতিগুলো লার্জ-স্ক্যাল প্রজেক্টে অপরিহার্য?
 
 - **Scalability:** কোডবেস বড় হলেও নির্দিষ্ট মডিউলে পরিবর্তন আনা সহজ হয় কারণ লজিকগুলো আইসোলেটেড থাকে।
