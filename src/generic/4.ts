@@ -19,7 +19,7 @@ const person1: TPerson<{ phone: string; email: string }> = {
 // Clean Coding
 type TContact = { phone: string; website: string; whatsup: string };
 interface ICar {
-  vehical: string;
+  vehicle: string;
   price: string;
   model: string;
 }
@@ -33,7 +33,7 @@ const person2: TPerson<TContact, ICar> = {
     whatsup: "017",
   },
   car: {
-    vehical: "bike",
+    vehicle: "bike",
     price: "20000$",
     model: "R15",
   },
