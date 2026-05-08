@@ -25,3 +25,5 @@ type ReadonlyUser = {
   readonly [P in keyof User]: User[P];
 };
 ```
+
+এখানে keyof User আমাদের id | name দিচ্ছে, আর [P in ...] সেই প্রতিটি কী-র ওপর লুপ চালিয়ে নতুন টাইপ বানাচ্ছে।
